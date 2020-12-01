@@ -8,32 +8,38 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Algorithm Playground</h1>
-
-    <p>A place to test some algorithms!</p>
-    
-    <div class="card" id="home_planet">
-        <form>
-            <div class="form-group">
-                <label for="select_algorithm">Which algorithm do you want to test?</label>
-                <select class ="form-control" name="select_algorithm" id="select_algorithm">
-                    <option value="reverse_string">reverse a string</option>
-                    <option value="floyd_triangle">show a floyd triangle</option>
-                    <option value="three_largest">find three largest numbers</option>
-                    <option value="get_primes">find all primes in a range</option>
-                    <option value="binary_search">perform a binary search</option>
-                    <option value="get_fib">get fibonnacci numbers</option>    
-                </select>
-            </div>
-            <div class="form-group">
-                <button class="form-control btn btn-primary btn-sm" id="select_algorithm_button">Go</button>
-            </div>
-        </form>
+    <div class="navbar navbar-light bg-light">
+        <h1>Algorithm Playground</h1>
+        <div class="btn btn-primary" id="home">Home</div>
+        <div class="btn btn-warning" id="clear">Clear Results</div>
     </div>
-    <div class="card" id="result_planet">
-
+    <div class="container main">
+        <h4>A place to test some algorithms!</h4>
+        <div class="card" id="home_planet">
+            <form>
+                <div class="form-group">
+                    <label for="select_algorithm">Which algorithm do you want to test?</label>
+                    <select class ="form-control" name="select_algorithm" id="select_algorithm">
+                        <option value="reverse_string">reverse a string</option>
+                        <option value="floyd_triangle">show a floyd triangle</option>
+                        <option value="three_largest">find three largest numbers</option>
+                        <option value="get_primes">find all primes in a range</option>
+                        <option value="get_fibs">get fibonnacci numbers</option>
+                        <option value="binary_search">perform a binary search</option>   
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-sm" id="select_algorithm_button">Go</button>
+                </div>
+            </form>
+        </div>
+        
     </div>
-<script src="./js/show_functions.js"></script>
+    <div class="container">
+        <div class="card" id="result_planet">
+            <!-- results here from js -->
+        </div>
+    </div>
 <script src="./script.js"></script>
 </body>
 </html>
