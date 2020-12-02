@@ -1,7 +1,19 @@
+const main_container = document.querySelector('.main')
 const home_planet = document.getElementById('home_planet')
 const result_planet = document.getElementById('result_planet')
 const select_algorithm = document.getElementById('select_algorithm')
 const select_algorithm_button = document.getElementById('select_algorithm_button')
+const header_text = document.getElementById('section_header')
+
+// SECTION HEADERS
+let section_headers = {
+    reverse_string : "Reverse a String",
+    floyd_triangle : "Make a Floyd's Triangle",
+    three_largest : "Find Three Largest Integers",
+    get_primes : "Find Prime Numbers",
+    get_fibs : "Find Fibonacci Number",
+    binary_search : "Perform a Binary Search"
+}
 
 // SHOW THE FUNCTION CARDS
 let function_getters = {
@@ -19,6 +31,9 @@ let function_getters = {
     },
     get_fibs : () => {
         return showGetFibs()
+    },
+    binary_search : () => {
+        return showBinarySearch()
     }
 }
 
@@ -38,14 +53,20 @@ let algo_reference = {
     },
     get_fibs : function () {
         return getFibs(this.input)
+    },
+    binary_search : function () {
+        return binarySearch(this.input)
     }
 }
 
 // This is the function shower; it calls as a return the function located in function_getters to show that functions input form
 select_algorithm_button.addEventListener('click', (e) => {
-    e.preventDefault()
-    return function_getters[select_algorithm.value].call()
+        e.preventDefault()
+        section_header.textContent = ""
+        section_header.textContent = section_headers[select_algorithm.value]
+        return function_getters[select_algorithm.value].call()
 })
+
 
 // This is the function submit handler
 document.addEventListener('click', (e) => {
@@ -57,7 +78,7 @@ document.addEventListener('click', (e) => {
             "input" : document.getElementById(`${e.target.id}_input`).value 
         }
         result_planet.innerHTML = algo_reference[e.target.id].call(this_value)
-        document.getElementById(`${e.target.id}_input`).textContent = ''
+        document.getElementById(`${e.target.id}_input`).value = ''
     }
     else if (e.target.id === 'home') {
         window.location.reload()
@@ -69,8 +90,9 @@ document.addEventListener('click', (e) => {
 
 // SHOWERS
 
-function showReverseString() {
+function showReverseString () {
     home_planet.textContent = ""
+    
     home_planet.innerHTML = `
     <div class='card-header'>Enter the string you'd like to reverse:</div>
     <form>
@@ -84,7 +106,7 @@ function showReverseString() {
     `
 }
 
-function showFloydTriange() {
+function showFloydTriange () {
     home_planet.textContent = ""
     home_planet.innerHTML = `
     <div class='card-header'>Enter the number of rows you'd like to input:</div>
@@ -99,7 +121,7 @@ function showFloydTriange() {
     `
 }
 
-function showThreeLargest() {
+function showThreeLargest () {
     home_planet.textContent = ""
     home_planet.innerHTML = `
     <div class='card-header'>Enter the size of the search set, then hit "Go" to see the largest numbers in that set:</div>
@@ -114,7 +136,7 @@ function showThreeLargest() {
     `
 }
 
-function showGetPrimes() {
+function showGetPrimes () {
     home_planet.textContent = ""
     home_planet.innerHTML = `
     <div class='card-header'>Enter a positive integer and click "Go" to see all the prime numbers between 1 and that number:</div>
@@ -129,7 +151,7 @@ function showGetPrimes() {
     `
 }
 
-function showGetFibs() {
+function showGetFibs () {
     home_planet.textContent = ""
     home_planet.innerHTML = `
     <div class='card-header'>Enter the number of iterations through which the algorithm F(n) = F(n-1) + F(n-2), where F(1) = 0 and F(2) = 1, should run:</div>
@@ -139,6 +161,21 @@ function showGetFibs() {
         </div>
         <div class='form-group'>
             <button id='get_fibs' class='btn btn-sm btn-info'>Go</button>
+        </div>
+    </form>
+    `
+}
+
+function showBinarySearch () {
+    home_planet.textContent = ""
+    home_planet.innerHTML = `
+    <div class='card-header'>Enter the size of the array you'd like to search, then hit "Go" - a search will be performed to see whether the value 255 is included.</div>
+    <form>
+        <div class='form-group'>
+            <input id='binary_search_input' class='form-control' type='number' placeholder="length of array here (must be positive)"></input>
+        </div>
+        <div class='form-group'>
+            <button id='binary_search' class='btn btn-sm btn-info'>Go</button>
         </div>
     </form>
     `
@@ -225,13 +262,14 @@ function getPrimes (num) {
 }
 
 function getFibs (n) {
+    let this_num = parseInt(n)
     let count = 1
     let result = 1
     let previous = 0
-    if (n === 1) {
-        return previous
+    if (this_num === 1) {
+        return 0
     } else {
-        while (count < (n - 1)) {
+        while (count < (this_num - 1)) {
             result += previous
             previous = result - previous
             count++
@@ -240,7 +278,31 @@ function getFibs (n) {
     }
 }
 
-// HELPERS
+function binarySearch (size) {
+    let target = 255
+    let array = arrayMaker(size)
+    let sorted = array.sort(compare)
+    console.log(sorted);
+    let min = 0
+    let max = sorted.length - 1
+    if (sorted) {
+        while (min <= max) {
+            let avg_ind = Math.floor((min + max) / 2)
+            if (sorted[avg_ind] === target) {
+                return true
+            }
+            else if (sorted[avg_ind] < target) {
+                min = avg_ind + 1
+            }
+            else if (sorted[avg_ind] > target) {
+                max = avg_ind - 1
+            }
+        }
+        return false
+    }
+}
+
+// HELPERS 
 
 function displayHelper (num) {
     if (num < 10) {
@@ -262,4 +324,14 @@ function arrayMaker (length_input) {
         i++
     }
     return result
+}
+
+function compare (a, b) {
+    if (a > b) {
+        return 1
+    } 
+    else if (a < b) {
+        return -1
+    }
+    return 0
 }

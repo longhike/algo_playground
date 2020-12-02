@@ -11,3 +11,7 @@ ul {
 .main > * {
     display: block;
 }
+
+#result_planet {
+    font-family: "Lucida Console", Courier, monospace;
+}
