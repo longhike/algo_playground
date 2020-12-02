@@ -7,16 +7,6 @@ const select_algorithm = document.getElementById('select_algorithm')
 const select_algorithm_button = document.getElementById('select_algorithm_button')
 const header_text = document.getElementById('section_header')
 
-// SECTION HEADERS
-let section_headers = {
-    reverse_string : "Reverse a String",
-    floyd_triangle : "Make a Floyd's Triangle",
-    three_largest : "Find Three Largest Integers",
-    get_primes : "Find Prime Numbers",
-    get_fibs : "Find Fibonacci Number",
-    binary_search : "Perform a Binary Search"
-}
-
 // SHOW THE FUNCTION CARDS
 let function_getters = {
     reverse_string : () => {
@@ -81,7 +71,7 @@ document.addEventListener('click', (e) => {
         }
         result_planet.innerHTML = `<h5 style='font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;'><strong>Here's the output</strong>`
         result_planet.innerHTML += algo_reference[e.target.id].call(this_value)
-        showCode(code_texts[e.target.id])
+        showCode(e.target.id)
         // document.getElementById(`${e.target.id}_input`).value = ''
     }
     else if (e.target.id === 'home') {
@@ -92,13 +82,12 @@ document.addEventListener('click', (e) => {
     }
 })
 
-// show code function
-function showCode (algo) {
-    code_planet.innerHTML = "<h5><strong>Here's the code</strong> (for the interested)</h5>"
-    code_planet.innerHTML += algo
-}
-
 // SHOWERS
+
+function showCode (algo, input) {
+    code_planet.innerHTML = "<h5><strong>Here's the code</strong> (for the interested)</h5>"
+    code_planet.innerHTML += returnCodeText(algo)
+}
 
 function showReverseString () {
     home_planet.textContent = ""

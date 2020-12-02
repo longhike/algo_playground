@@ -1,9 +1,10 @@
 /* html {
     height: 100%;
 }
+*/
 body {
-    max-height: 90%
-} */
+    overflow: hidden;
+} 
 
 ul {
     list-style-type: none;
@@ -22,14 +23,14 @@ ul {
 .results_row {
     max-height: 50%
 }
-
+/* 
 .col-md-6 {
     max-height: 50%;
-}
+} */
 
 #code_planet {
-    height: 30%;
-    max-height: 30%;
+    height: 40%;
+    max-height: 40%;
     overflow: hidden scroll;
 }
 
@@ -41,7 +42,23 @@ ul {
 #result_planet {
     font-size: 12px;
     font-family: "Lucida Console", Courier, monospace;
-    height: 30%;
-    max-height: 30%;
+    height: 40%;
+    max-height: 40%;
+    white-space: nowrap;
     overflow: hidden scroll;
+    /* overflow-y: hidden scroll;
+    overflow-x: hidden scroll; */
+}
+
+@media only screen and (max-width: 767px) {
+    body {
+        overflow: scroll;
+    }
+    .col-md-6 {
+        max-height: 10%
+        
+    }
+    .col-md-6 > card {
+        overflow: none;
+    }
 }
