@@ -1,6 +1,8 @@
 const main_container = document.querySelector('.main')
 const home_planet = document.getElementById('home_planet')
 const result_planet = document.getElementById('result_planet')
+const code_header = document.getElementById('code_header')
+const code_planet = document.getElementById('code_planet')
 const select_algorithm = document.getElementById('select_algorithm')
 const select_algorithm_button = document.getElementById('select_algorithm_button')
 const header_text = document.getElementById('section_header')
@@ -68,17 +70,19 @@ select_algorithm_button.addEventListener('click', (e) => {
 })
 
 
-// This is the function submit handler
 document.addEventListener('click', (e) => {
     e.preventDefault()
     // if the id of the clicked button is in the algo_reference object and the type is submit (so we can ensure it's a button), it'll call the algorithm 
     if (e.target.id in algo_reference && e.target.type === "submit") {
+        code_planet.textContent = ""
         result_planet.innerHTML = ""
         let this_value =  { 
             "input" : document.getElementById(`${e.target.id}_input`).value 
         }
-        result_planet.innerHTML = algo_reference[e.target.id].call(this_value)
-        document.getElementById(`${e.target.id}_input`).value = ''
+        result_planet.innerHTML = `<h5 style='font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;'><strong>Here's the output</strong>`
+        result_planet.innerHTML += algo_reference[e.target.id].call(this_value)
+        showCode(code_texts[e.target.id])
+        // document.getElementById(`${e.target.id}_input`).value = ''
     }
     else if (e.target.id === 'home') {
         window.location.reload()
@@ -87,6 +91,12 @@ document.addEventListener('click', (e) => {
         result_planet.textContent = ""
     }
 })
+
+// show code function
+function showCode (algo) {
+    code_planet.innerHTML = "<h5><strong>Here's the code</strong> (for the interested)</h5>"
+    code_planet.innerHTML += algo
+}
 
 // SHOWERS
 
@@ -282,7 +292,6 @@ function binarySearch (size) {
     let target = 255
     let array = arrayMaker(size)
     let sorted = array.sort(compare)
-    console.log(sorted);
     let min = 0
     let max = sorted.length - 1
     if (sorted) {

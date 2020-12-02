@@ -1,3 +1,10 @@
+/* html {
+    height: 100%;
+}
+body {
+    max-height: 90%
+} */
+
 ul {
     list-style-type: none;
     padding: 0;
@@ -12,6 +19,29 @@ ul {
     display: block;
 }
 
-#result_planet {
+.results_row {
+    max-height: 50%
+}
+
+.col-md-6 {
+    max-height: 50%;
+}
+
+#code_planet {
+    height: 30%;
+    max-height: 30%;
+    overflow: hidden scroll;
+}
+
+#code_planet > p {
+    font-size: 12px;
     font-family: "Lucida Console", Courier, monospace;
+}
+
+#result_planet {
+    font-size: 12px;
+    font-family: "Lucida Console", Courier, monospace;
+    height: 30%;
+    max-height: 30%;
+    overflow: hidden scroll;
 }
