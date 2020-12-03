@@ -1,15 +1,23 @@
-/* html {
-    height: 100%;
-}
-*/
-body {
+/* body {
     overflow: hidden;
-} 
+}  */
 
 ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
+}
+
+.card {
+    padding: 2%;
+}
+
+.card-header {
+    background: none;
+}
+
+.col-md-6 {
+    max-height: 300px;
 }
 
 .main {
@@ -20,18 +28,10 @@ ul {
     display: block;
 }
 
-.results_row {
-    max-height: 50%
-}
-/* 
-.col-md-6 {
-    max-height: 50%;
-} */
-
 #code_planet {
-    height: 40%;
-    max-height: 40%;
-    overflow: hidden scroll;
+    max-height: 100%;
+    white-space: nowrap;
+    overflow: auto;
 }
 
 #code_planet > p {
@@ -42,12 +42,10 @@ ul {
 #result_planet {
     font-size: 12px;
     font-family: "Lucida Console", Courier, monospace;
-    height: 40%;
-    max-height: 40%;
+    /* height: 40%; */
+    max-height: 100%;
     white-space: nowrap;
-    overflow: hidden scroll;
-    /* overflow-y: hidden scroll;
-    overflow-x: hidden scroll; */
+    overflow: auto;
 }
 
 @media only screen and (max-width: 767px) {
@@ -55,10 +53,15 @@ ul {
         overflow: scroll;
     }
     .col-md-6 {
-        max-height: 10%
-        
+        max-height: 250px;
+        overflow: auto;
+
     }
     .col-md-6 > card {
-        overflow: none;
+        overflow: auto;
+    }
+    #result_planet, #code_planet { 
+        height: auto;
+        max-height: 100%;
     }
 }

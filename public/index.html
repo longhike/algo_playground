@@ -20,15 +20,15 @@
         </div>
     </div>
     <div class="container main">
-        <h4 id="section_header">A place to test some algorithms!</h4>
-        <div class="card" id="home_planet">
+        <h4 id="section_header"></h4>
+        <div class="card" id=run_content>
             <form>
                 <div class="form-group">
                     <label for="select_algorithm">Which algorithm do you want to test?</label>
                     <select class="form-control" name="select_algorithm" id="select_algorithm">
                         <option value="reverse_string">reverse a string</option>
-                        <option value="floyd_triangle">show a floyd triangle</option>
-                        <option value="three_largest">find three largest numbers</option>
+                        <option value="floyd_triangle">make a Floyd's Triangle</option>
+                        <option value="three_largest">find three largest numbers in a set</option>
                         <option value="get_primes">find all primes in a range</option>
                         <option value="get_fibs">get fibonnacci numbers</option>
                         <option value="binary_search">perform a binary search</option>   
@@ -39,9 +39,11 @@
                 </div>
             </form>
         </div>
+        <div class="card" id="home_planet">
+        </div>
     </div>
     <div class="container">
-        <div class="row results_row">
+        <div class="row" id="results_row">
             <div class="col-md-6">
                 <div class="card" id="result_planet">
                     <!-- results here from js -->
@@ -55,7 +57,11 @@
         </div>
         
     </div>
-<script src="./script_helpers/big_objs.js"></script>
+<script src="./script_helpers/globals.js"></script>
+<script src="./script_helpers/code_text.js"></script>
+<script src="./script_helpers/showers.js"></script>
+<script src="./script_helpers/doers.js"></script>
+<script src="./script_helpers/function_helpers.js"></script>
 <script src="./script.js"></script>
 </body>
 </html>
